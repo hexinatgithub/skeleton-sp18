@@ -2,6 +2,15 @@
  *  @author YOUR NAME HERE
  */
 public class LeapYear {
+    /** Calls isLeapYear to decide whether is a leap year.
+     *  @param  year to be decided.
+     *  @return true if year is leap else false.
+     */
+    public static boolean isLeapYear(int year) {
+        boolean dividedBy400 = year % 400 == 0;
+        boolean dividedBy4NotBy100 = (year % 4) == 0 && (year % 100) != 0;
+        return dividedBy400 || dividedBy4NotBy100;
+    }
 
     /** Calls isLeapYear to print correct statement.
      *  @param  year to be analyzed
@@ -30,4 +39,3 @@ public class LeapYear {
         }
     }
 }
-
