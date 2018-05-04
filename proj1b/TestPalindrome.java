@@ -27,4 +27,13 @@ public class TestPalindrome {
         assertFalse("aaaaab is not a palindrome", palindrome.isPalindrome("aaaaab"));
         assertFalse("aA is not a palindrome", palindrome.isPalindrome("aA"));
     }
+
+    @Test
+    public void testIsPalindromeCharacterComparator() {
+        CharacterComparator cc = new OffByOne();
+        assertTrue("a is palindrome", palindrome.isPalindrome("a", cc));
+        assertTrue("empty word is palindrome", palindrome.isPalindrome("", cc));
+        assertTrue("racecar is palindrome", palindrome.isPalindrome("acb", cc));
+        assertTrue("noon is palindrome", palindrome.isPalindrome("flake", cc));
+    }
 }
