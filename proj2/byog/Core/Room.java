@@ -15,9 +15,11 @@ public class Room {
 
     public Room(Position position, int width, int height) {
         space = new Rectangle(position, width, height);
-        TETile[] floors = {Tileset.GRASS, Tileset.FLOWER, Tileset.LOCKED_DOOR, Tileset.SAND, Tileset.TREE};
-        this.floor = floors[index % 5];
+//        TETile[] floors = {Tileset.GRASS, Tileset.FLOWER, Tileset.LOCKED_DOOR, Tileset.SAND, Tileset.TREE};
+//        this.floor = floors[index % 5];
+        this.floor = Tileset.FLOOR;
     }
+
 
     public boolean overlap(Room room) {
         return space.collision(room.space);

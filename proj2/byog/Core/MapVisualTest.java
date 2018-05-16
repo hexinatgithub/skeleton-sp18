@@ -5,7 +5,7 @@ import byog.TileEngine.TETile;
 
 public class MapVisualTest {
     public static void main(String[] args) {
-        MapGenerator mg = new MapGenerator(3);
+        MapGenerator mg = new MapGenerator(212);
         Map map = mg.generateRandomMap();
 
         TERenderer ter = new TERenderer();
