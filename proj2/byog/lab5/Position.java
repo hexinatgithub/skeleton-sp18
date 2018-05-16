@@ -13,4 +13,10 @@ public class Position {
         X = x;
         Y = y;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Position other = (Position) obj;
+        return other.X == X && other.Y == Y;
+    }
 }
