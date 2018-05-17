@@ -18,13 +18,13 @@ public class MapGenerator {
         int height = RandomUtils.uniform(random, 1, 5);
         Room room = branch.generateRoom(width, height);
 
-        if (!map.canAddRoom(room)) {
+        if (!canAddRoom(map, branch.room, room)) {
             return;
         }
 
         map.addRoom(room);
-        int numBranches = RandomUtils.uniform(random, 2, 5);
-        RoomBranch[] branches = new RoomBranchGenerator(room, random).randomBranch(numBranches);
+        int numBranches = RandomUtils.uniform(random, 4, 5);
+        RoomBranch[] branches = new RoomBranchGenerator(room, random).randomBranch(4);
         for (RoomBranch br : branches) {
             generateRandomMap(map, br);
         }
@@ -41,6 +41,17 @@ public class MapGenerator {
     private RoomBranch startBranch() {
         int x = RandomUtils.uniform(random, 1, WIDTH / 2);
         int y = RandomUtils.uniform(random, 1, HEIGHT / 2);
-        return new RoomBranch(new Position(x, y), Vector.upRight);
+        return new RoomBranch(null, new Position(40, 40), Vector.upRight);
+    }
+
+    private boolean canAddRoom(Map map, Room fromRoom, Room newRoom) {
+        // overlap with other room expect fromRoom
+        for (Room or : map.rooms) {
+            if (or != fromRoom && or.overlap(newRoom)) {
+                return false;
+            }
+        }
+        // is exceed world
+        return !map.isExceedWorld(newRoom);
     }
 }

@@ -9,7 +9,7 @@ public class TestRoomBranch {
     public void testGenerateRoom() {
         Position p = new Position(10, 10);
         Vector v = Vector.upRight;
-        RoomBranch branch = new RoomBranch(p, v);
+        RoomBranch branch = new RoomBranch(null, p, v);
         Room room = branch.generateRoom(10, 10);
 
         assertEquals(room.space, new Rectangle(p, 10, 10));

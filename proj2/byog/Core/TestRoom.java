@@ -2,20 +2,32 @@ package byog.Core;
 
 import byog.lab5.Position;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestRoom {
     @Test
     public void testOverlap() {
-        Room r1 = new Room(new Position(1, 1), 1, 2);
-        Room r2 = new Room(new Position(1, 3), 2, 3);
-        Room r3 = new Room(new Position(3, 4), 1, 4);
-        Room r4 = new Room(new Position(3, 3), 4, 1);
-        Room r5 = new Room(new Position(2, 3), 5, 4);
-        assertFalse(r5.overlap(r1));
-        assertTrue(r5.overlap(r2));
-        assertTrue(r5.overlap(r3));
-        assertTrue(r5.overlap(r4));
+        Room r1 = new Room(new Position(1, 1), 2, 3);
+        Room r2 = new Room(new Position(3, 3), 6, 5);
+
+        // y overlap?
+        assertTrue(r2.overlap(r1));
+
+        r2 = new Room(new Position(3, 4), 6, 5);
+        assertTrue(r2.overlap(r1));
+
+        r2 = new Room(new Position(3, 6), 6, 5);
+        assertFalse(r2.overlap(r1));
+
+        // x overlap
+        r1 = new Room(new Position(1, 3), 2, 3);
+        r2 = new Room(new Position(3, 3), 6, 5);
+
+        assertTrue(r2.overlap(r1));
+
+        r2 = new Room(new Position(5, 3), 6, 5);
+        assertFalse(r2.overlap(r1));
     }
 
     @Test

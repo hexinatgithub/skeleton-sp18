@@ -5,8 +5,10 @@ import byog.lab5.Position;
 public class RoomBranch {
     Position position;
     Vector vector;
+    Room room;
 
-    public RoomBranch(Position position, Vector vector) {
+    public RoomBranch(Room room, Position position, Vector vector) {
+        this.room = room;
         this.position = position;
         this.vector = vector;
     }

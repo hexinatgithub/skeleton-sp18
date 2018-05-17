@@ -107,7 +107,7 @@ public class RoomBranchGenerator {
 
         public RoomBranch getBranch() {
             Position p = randomPoint();
-            return new RoomBranch(p, vector);
+            return new RoomBranch(room, p, vector);
         }
     }
 

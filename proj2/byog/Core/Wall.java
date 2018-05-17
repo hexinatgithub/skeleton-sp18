@@ -9,6 +9,10 @@ public class Wall {
         wallRect = new Rectangle(position, width, height);
     }
 
+    public boolean overlap(Wall wall) {
+        return wallRect.collision(wall.wallRect);
+    }
+
     public Position bottomLeftPosition() {
         return wallRect.bottomLeftPosition();
     }

@@ -19,11 +19,7 @@ public class Map {
         this.rooms = new ArrayList<>();
     }
 
-    public boolean canAddRoom(Room room) {
-        return !isExceedWorld(room) && !isOverlapWithOtherRoom(room);
-    }
-
-    private boolean isExceedWorld(Room room) {
+    public boolean isExceedWorld(Room room) {
         Wall wall = room.wall();
         Position wallBottomLeft = wall.bottomLeftPosition();
         Position wallUpperRight = wall.upperRightPosition();
@@ -32,17 +28,8 @@ public class Map {
         return  isWBLExceed || isWURExceed;
     }
 
-    private boolean isOverlapWithOtherRoom(Room room) {
-        for (Room or : rooms) {
-            if (or.overlap(room)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void addRoom(Room room) {
-        if (!canAddRoom(room)) {
+        if (isExceedWorld(room)) {
             throw new RuntimeException("room can't add to this world");
         }
 
