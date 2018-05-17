@@ -1,72 +1,73 @@
-package byog.Core;
+package byog.Core.RandomMap;
 
+import byog.Core.*;
 import byog.lab5.Position;
 
 import java.util.Random;
 
-public class RoomBranchGenerator {
+public class HallWayGenerator {
     Room room;
     Random random;
 
-    public RoomBranchGenerator(Room room, Random random) {
+    public HallWayGenerator(Room room, Random random) {
         this.room = room;
         this.random = random;
     }
 
-    public RoomBranch[] randomBranch(int num) {
+    public HallWayGeneratable[] randomHallWay(int num) {
         num = Math.min(num, 4);
-        BranchCandidate[] candidates = {
+        HallWayCandidate[] candidates = {
                 bottomCandidate(), upperCandidate(), leftCandidate(), rightCandidate()
         };
-        RoomBranch[] branches = new RoomBranch[num];
+        HallWayGeneratable[] branches = new HallWayGeneratable[num];
 
         RandomUtils.shuffle(random, candidates);
         // from each side generator a branch
         for (int i = 0; i < num; i++) {
-            branches[i] = candidates[i].getBranch();
+            branches[i] = candidates[i].getHallWayGeneratable();
         }
 
         return branches;
     }
 
-    protected BranchCandidate bottomCandidate() {
+    protected HallWayCandidate bottomCandidate() {
         Position p1 = room.space.bottomLeftPosition();
         Position p2 = room.space.bottomRightPosition();
         p1.Y -= 1;
         p2.Y -= 1;
-        return new BranchCandidate(p1, p2, Vector.downRight);
+        return new HallWayCandidate(p1, p2, HallWayVector.Down);
     }
 
-    protected BranchCandidate upperCandidate() {
+    protected HallWayCandidate upperCandidate() {
         Position p1 = room.space.upperLeftPosition();
         Position p2 = room.space.upperRightPosition();
         p1.Y += 1;
         p2.Y += 1;
-        return new BranchCandidate(p1, p2, Vector.upRight);
+        return new HallWayCandidate(p1, p2, HallWayVector.Up);
     }
 
-    protected BranchCandidate leftCandidate() {
+    protected HallWayCandidate leftCandidate() {
         Position p1 = room.space.bottomLeftPosition();
         Position p2 = room.space.upperLeftPosition();
         p1.X -= 1;
         p2.X -= 1;
-        return new BranchCandidate(p1, p2, Vector.upLeft);
+        return new HallWayCandidate(p1, p2, HallWayVector.Left);
     }
 
-    protected BranchCandidate rightCandidate() {
+    protected HallWayCandidate rightCandidate() {
         Position p1 = room.space.bottomRightPosition();
         Position p2 = room.space.upperRightPosition();
         p1.X += 1;
         p2.X += 1;
-        return new BranchCandidate(p1, p2, Vector.upRight);
+        return new HallWayCandidate(p1, p2, HallWayVector.Right);
     }
 
-    protected class BranchCandidate {
+    protected class HallWayCandidate {
         Position position1;
         Position position2;
-        Vector vector;
+        HallWayVector vector;
 
-        public BranchCandidate(Position position1, Position position2, Vector vector) {
+        public HallWayCandidate(Position position1, Position position2, HallWayVector vector) {
             this.position1 = position1;
             this.position2 = position2;
             this.vector = vector;
@@ -105,10 +106,9 @@ public class RoomBranchGenerator {
             return new Position(position1.X, position1.Y + offset);
         }
 
-        public RoomBranch getBranch() {
+        public HallWayGeneratable getHallWayGeneratable() {
             Position p = randomPoint();
-            return new RoomBranch(room, p, vector);
+            return new HallWayGeneratable(p, vector);
         }
     }
-
 }

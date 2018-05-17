@@ -76,8 +76,8 @@ public class RandomUtils {
     /**
      * Returns a random integer uniformly in [a, b).
      *
-     * @param a the left endpoint
-     * @param b the right endpoint
+     * @param a the Left endpoint
+     * @param b the Right endpoint
      * @return a random integer uniformly in [a, b)
      * @throws IllegalArgumentException if {@code b <= a}
      * @throws IllegalArgumentException if {@code b - a >= Integer.MAX_VALUE}
@@ -92,8 +92,8 @@ public class RandomUtils {
     /**
      * Returns a random real number uniformly in [a, b).
      *
-     * @param a the left endpoint
-     * @param b the right endpoint
+     * @param a the Left endpoint
+     * @param b the Right endpoint
      * @return a random real number uniformly in [a, b)
      * @throws IllegalArgumentException unless {@code a < b}
      */
@@ -417,8 +417,8 @@ public class RandomUtils {
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
      * @param a  the array to shuffle
-     * @param lo the left endpoint (inclusive)
-     * @param hi the right endpoint (exclusive)
+     * @param lo the Left endpoint (inclusive)
+     * @param hi the Right endpoint (exclusive)
      * @throws IllegalArgumentException if {@code a} is {@code null}
      * @throws IllegalArgumentException unless {@code (0 <= lo) && (lo < hi) && (hi <= a.length)}
      */
@@ -438,8 +438,8 @@ public class RandomUtils {
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
      * @param a  the array to shuffle
-     * @param lo the left endpoint (inclusive)
-     * @param hi the right endpoint (exclusive)
+     * @param lo the Left endpoint (inclusive)
+     * @param hi the Right endpoint (exclusive)
      * @throws IllegalArgumentException if {@code a} is {@code null}
      * @throws IllegalArgumentException unless {@code (0 <= lo) && (lo < hi) && (hi <= a.length)}
      */
@@ -459,8 +459,8 @@ public class RandomUtils {
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
      * @param a  the array to shuffle
-     * @param lo the left endpoint (inclusive)
-     * @param hi the right endpoint (exclusive)
+     * @param lo the Left endpoint (inclusive)
+     * @param hi the Right endpoint (exclusive)
      * @throws IllegalArgumentException if {@code a} is {@code null}
      * @throws IllegalArgumentException unless {@code (0 <= lo) && (lo < hi) && (hi <= a.length)}
      */

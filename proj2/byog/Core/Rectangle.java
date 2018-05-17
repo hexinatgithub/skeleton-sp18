@@ -6,6 +6,10 @@ public class Rectangle implements Shape {
     public Position position;
     public Size size;
 
+    public Size getSize() {
+        return new Size(size.X, size.Y);
+    }
+
     public Rectangle(Position position, int width, int height) {
         this.position = position;
         this.size = new Size(width, height);
@@ -42,4 +46,5 @@ public class Rectangle implements Shape {
         Rectangle other = (Rectangle) obj;
         return other.position.equals(position) && other.size.equals(size);
     }
+
 }

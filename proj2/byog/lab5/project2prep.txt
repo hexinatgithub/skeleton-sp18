@@ -10,7 +10,7 @@ Think back to the lab and the process used to eventually get to tesselating hexa
 A:
 
 -----
-Q: What distinguishes a hallway from a room? How are they similar?
+Q: What distinguishes a hallway from a hallway? How are they similar?
 
 A:
 

@@ -1,8 +1,8 @@
 package byog.Core;
 
 public class Size {
-    int X;
-    int Y;
+    public int X;
+    public int Y;
 
     public Size(int x, int y) {
         X = x;

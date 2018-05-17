@@ -8,7 +8,7 @@ import edu.princeton.cs.introcs.StdDraw;
 import byog.Core.RandomUtils;
 
 /**
- * The TETile object is used to represent a single tile in your game. A 2D array of tiles make up a
+ * The TETile object is used to represent a single tile in your game. A 2D array of tiles make Up a
  * board, and can be drawn to the screen using the TERenderer class.
  *
  * All TETile objects must have a character, textcolor, and background color to be used to represent
@@ -76,7 +76,7 @@ public class TETile {
      * we draw the image located at that filepath to the screen. Otherwise, we fall
      * back to the character and color representation for the tile.
      *
-     * Note that the image provided must be of the right size (16x16). It will not be
+     * Note that the image provided must be of the Right size (16x16). It will not be
      * automatically resized or truncated.
      * @param x x coordinate
      * @param y y coordinate

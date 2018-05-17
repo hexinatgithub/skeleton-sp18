@@ -20,7 +20,7 @@ public class Map {
     }
 
     public boolean isExceedWorld(Room room) {
-        Wall wall = room.wall();
+        Room.Wall wall = room.wall();
         Position wallBottomLeft = wall.bottomLeftPosition();
         Position wallUpperRight = wall.upperRightPosition();
         boolean isWBLExceed = wallBottomLeft.X < 0 || wallBottomLeft.Y < 0;

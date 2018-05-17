@@ -37,7 +37,7 @@ public class MapTileBuilder implements MapBuilder {
 
     @Override
     public void insertWall(Room room) {
-        Wall wall = room.wall();
+        Room.Wall wall = room.wall();
         insertWall(wall.bottomLeftPosition(), wall.upperLeftPosition());
         insertWall(wall.upperLeftPosition(), wall.upperRightPosition());
         insertWall(wall.upperRightPosition(), wall.bottomRightPosition());
