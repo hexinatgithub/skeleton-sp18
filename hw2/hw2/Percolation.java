@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Percolation {
-    private SiteState[][] GridState;
-    private WeightedQuickUnionUF GridUF1;
-    private WeightedQuickUnionUF GridUF2;
-    private int N;
+    private SiteState[][] gridState;
+    private WeightedQuickUnionUF gridUF1;
+    private WeightedQuickUnionUF gridUF2;
+    private int n;
     private int numberOfOpenSites;
 
     private enum SiteState {
@@ -33,22 +33,22 @@ public class Percolation {
             throw new IllegalArgumentException("N <= 0");
         }
 
-        GridState = new SiteState[N][N];
-        for (int i = 0; i < GridState.length; i++) {
-            SiteState[] row = GridState[i];
+        gridState = new SiteState[N][N];
+        for (int i = 0; i < gridState.length; i++) {
+            SiteState[] row = gridState[i];
             for (int j = 0; j < row.length; j++) {
                 row[j] = SiteState.Blocked;
             }
         }
-        GridUF1 = new WeightedQuickUnionUF(N * N + 2);
-        GridUF2 = new WeightedQuickUnionUF(N * N + 1);
-        this.N = N;
+        gridUF1 = new WeightedQuickUnionUF(N * N + 2);
+        gridUF2 = new WeightedQuickUnionUF(N * N + 1);
+        this.n = N;
         numberOfOpenSites = 0;
     }
 
     private boolean inGrid(int row, int col) {
-        return (0 <= row && row < N) &&
-                (0 <= col && col < N);
+        return (0 <= row && row < n)
+                && (0 <= col && col < n);
     }
 
     // open the site (row, col) if it is not open already
@@ -62,21 +62,21 @@ public class Percolation {
         }
 
         int index = xyTo1D(row, col);
-        GridState[row][col] = SiteState.Open;
+        gridState[row][col] = SiteState.Open;
         numberOfOpenSites++;
-        for (SitePosition p: openNeighbors(row, col)) {
+        for (SitePosition p : openNeighbors(row, col)) {
             int nIndex = xyTo1D(p.row, p.col);
-            GridUF1.union(index, nIndex);
-            GridUF2.union(index, nIndex);
+            gridUF1.union(index, nIndex);
+            gridUF2.union(index, nIndex);
         }
 
         if (row == 0) {
-            GridUF1.union(index, virtualTopSite1D());
-            GridUF2.union(index, virtualTopSite1D());
+            gridUF1.union(index, virtualTopSite1D());
+            gridUF2.union(index, virtualTopSite1D());
         }
 
-        if (row == N - 1) {
-            GridUF1.union(index, virtualBottomSite1D());
+        if (row == n - 1) {
+            gridUF1.union(index, virtualBottomSite1D());
         }
     }
 
@@ -85,7 +85,7 @@ public class Percolation {
         if (!inGrid(row, col)) {
             throw new IndexOutOfBoundsException();
         }
-        return GridState[row][col] == SiteState.Open;
+        return gridState[row][col] == SiteState.Open;
     }
 
     // is the site (row, col) full?
@@ -93,7 +93,7 @@ public class Percolation {
         if (!inGrid(row, col)) {
             throw new IndexOutOfBoundsException();
         }
-        return GridUF2.connected(xyTo1D(row, col), virtualTopSite1D());
+        return gridUF2.connected(xyTo1D(row, col), virtualTopSite1D());
     }
 
     // number of open sites
@@ -103,7 +103,7 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        return GridUF1.connected(virtualTopSite1D(), virtualBottomSite1D());
+        return gridUF1.connected(virtualTopSite1D(), virtualBottomSite1D());
     }
 
     private List<SitePosition> openNeighbors(int row, int col) {
@@ -138,19 +138,19 @@ public class Percolation {
     }
 
     private int virtualTopSite1D() {
-        return xyTo1D(N, 0);
+        return xyTo1D(n, 0);
     }
 
     private int virtualBottomSite1D() {
-        return xyTo1D(N, 1);
+        return xyTo1D(n, 1);
     }
 
     private int xyTo1D(int row, int col) {
-        return row * N + col;
+        return row * n + col;
     }
 
-    // use for unit testing (not required)
     public static void main(String[] args) {
 
     }
+
 }

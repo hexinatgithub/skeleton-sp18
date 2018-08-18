@@ -1,0 +1,5 @@
+This file needs to be present in the project folder for autograder submission. 
+Searching for explanation.txt in /autograder/submission/hw2/
+
+* The explanation.txt you included is not long enough. Please provide additional information.
+* Your final score will be zero until you do this.
