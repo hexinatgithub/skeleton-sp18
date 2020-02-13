@@ -30,11 +30,13 @@ public class Solver {
     private MinPQ<SearchNode> pq;
     private int moves;
     private Stack<WorldState> solution;
+    private int enqueue;
 
     public Solver(WorldState initial) {
-        solution = new Stack<>();
-        moves = 0;
         pq = new MinPQ<>();
+        moves = 0;
+        solution = new Stack<>();
+        enqueue = 0;
 
         SearchNode node = new SearchNode(initial, 0, null);
         pq.insert(node);
@@ -59,11 +61,16 @@ public class Solver {
             if (n.parent != null && ws.equals(n.parent.ws)) continue;
             SearchNode nn = new SearchNode(ws, n.moves + 1, n);
             pq.insert(nn);
+            enqueue++;
         }
     }
 
     public int moves() {
         return moves;
+    }
+
+    public int getEnqueue() {
+        return enqueue;
     }
 
     public Iterable<WorldState> solution() {
